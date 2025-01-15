@@ -19,4 +19,5 @@ public class UserController {
        return ResponseEntity.ok(userService.getAllUsersExceptSelf(authentication));
     }
 
+
 }
