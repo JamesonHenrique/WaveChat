@@ -16,8 +16,8 @@ public class UserSynchronizer {
     private final UserMapper userMapper;
 
     public void synchronizeWithIdp(Jwt token) {
-        log.info("Synchronizing user with IDP"); getUserEmail(token).ifPresent(userEmail -> {
-            log.info("Synchronizing user having email: {}", userEmail);
+        log.info("Sincronizando usuário com IDP"); getUserEmail(token).ifPresent(userEmail -> {
+            log.info("Sincronizando usuário com email: {}", userEmail);
             Optional<User> optUser = userRepository.findByEmail(userEmail);
             User user = userMapper.fromTokenAttributes(token.getClaims());
             optUser.ifPresent(value -> user.setId(value.getId())); userRepository.save(user);
