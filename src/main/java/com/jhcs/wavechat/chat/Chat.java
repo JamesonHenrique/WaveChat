@@ -55,7 +55,7 @@ public class Chat extends BaseAuditingEntity {
     }
 
     @Transient
-    public String getLatestMessage() {
+    public String getLastMessage() {
         if (messages != null && !messages.isEmpty()) {
             if (messages.get(0)
                         .getType() != MessageType.TEXT) {
