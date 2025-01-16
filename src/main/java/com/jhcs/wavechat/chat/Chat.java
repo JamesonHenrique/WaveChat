@@ -5,6 +5,7 @@ import com.jhcs.wavechat.message.Message;
 import com.jhcs.wavechat.message.MessageState;
 import com.jhcs.wavechat.message.MessageType;
 import com.jhcs.wavechat.user.User;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ import java.util.List;
 @Table(name = "chat")
 @NamedQuery(name = ChatConstants.FIND_CHAT_BY_SENDER_ID, query = "SELECT DISTINCT c FROM Chat c WHERE c.sender.id = :senderId OR c.recipient.id = :senderId ORDER BY c.createdDate DESC")
 @NamedQuery(name = ChatConstants.FIND_CHAT_BY_SENDER_ID_AND_RECEIVER, query = "SELECT DISTINCT c FROM Chat c WHERE (c.sender.id = :senderId AND c.recipient.id = :recipientId) OR (c.sender.id = :recipientId AND c.recipient.id = :senderId)")
+@Tag(name = "Chat")
 public class Chat extends BaseAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
