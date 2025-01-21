@@ -13,6 +13,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toSet;
+
 /**
  * Conversor que transforma um token JWT em uma instância de AbstractAuthenticationToken.
  */
@@ -27,12 +29,10 @@ public class KeycloakJwtAuthenticationConverter
      */
     @Override
     public AbstractAuthenticationToken convert(@NonNull Jwt jwt) {
-        return new JwtAuthenticationToken(
-                jwt,
-                Stream.concat(
-                                new JwtGrantedAuthoritiesConverter().convert(jwt).stream(),
-                                extractResourceRoles(jwt).stream())
-                        .collect(Collectors.toSet()));
+
+        return new JwtAuthenticationToken(jwt, Stream.concat(new JwtGrantedAuthoritiesConverter().convert(jwt)
+                        .stream(), extractResourceRoles(jwt).stream())
+                .collect(toSet()));
     }
 
     /**
@@ -41,10 +41,16 @@ public class KeycloakJwtAuthenticationConverter
      * @param jwt O token JWT contendo as roles de recursos.
      * @return Uma coleção de GrantedAuthority representando as roles extraídas.
      */
+
     private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
-        var resourceAcess = new HashMap<>(jwt.getClaim("resource_access"));
-        var eternal = (Map<String, List<String>>) resourceAcess.get("account");
+        var resourceAccess = new HashMap<>(jwt.getClaim("resource_access"));
+
+        var eternal = (Map<String, List<String>>) resourceAccess.get("account");
+
         var roles = eternal.get("roles");
-        return roles.stream().map((role -> new SimpleGrantedAuthority("ROLE_" + role.replace("-", "_")))).collect(Collectors.toList());
+
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.replace("-", "_")))
+                .collect(toSet());
     }
 }

@@ -36,9 +36,10 @@ public class UserSynchronizerFilter extends OncePerRequestFilter {
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
-    ) throws ServletException, IOException {
+                                   ) throws ServletException, IOException {
         if (!(SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken)) {
             JwtAuthenticationToken token = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+
             userSynchronizer.synchronizeWithIdp(token.getToken());
         }
         filterChain.doFilter(request, response);

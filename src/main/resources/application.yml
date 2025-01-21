@@ -26,8 +26,11 @@ spring:
 springdoc:
   default-produces-media-type: application/json
 
-
+logging:
+  level:
+    com.jhcs.wavechat.infrastructure.security: INFO
 application:
   file:
     uploads:
       media-output-path: ./uploads
+
