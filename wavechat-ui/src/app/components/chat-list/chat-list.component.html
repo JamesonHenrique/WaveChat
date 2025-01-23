@@ -2,9 +2,12 @@
   <div class="d-flex justify-content-between align-items-center gap-2 p-2">
     <h4>Chat</h4>
     @if (!searchNewContact) {
-      <i class="fas fa-comment-medical cursor-pointer" (click)="searchContact()"></i>
+      <i class="fa fa-plus cursor-pointer" (click)="searchContact()"></i>
+
     } @else {
       <i class="fas fa-times-circle cursor-pointer" (click)="searchNewContact = false"></i>
+
+
     }
 
   </div>
@@ -19,7 +22,7 @@
       <span class="badge rounded-pill text-bg-light cursor-pointer">Todos</span>
       <span class="badge rounded-pill text-bg-light cursor-pointer">Não lidos</span>
       <span class="badge rounded-pill text-bg-light cursor-pointer">Favoritos</span>
-     
+
     </div>
   </div>
 

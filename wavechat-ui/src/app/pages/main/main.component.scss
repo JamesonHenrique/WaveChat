@@ -11,18 +11,20 @@
   top: 0;
   width: 100%;
   height: 20%;
-  background-color: #1ea884;
+  background-color: #3598DB;
 }
 
 .main-container {
   position: relative;
-  width: 80%;
+  width: 98%;
   max-width: 100%;
   height: calc(100vh - 40px);
   background: #fff;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5), 0 2px 5px 0 rgba(0, 0, 0, 0.6);
 }
-
+.logo-name {
+  margin-top: -87px;
+}
 .online-status {
   background: #1fa855;
   min-width: 10px;
@@ -51,9 +53,9 @@
 
 .bg-chat {
     background-blend-mode: overlay;
-  background-color: #efeae2eb;
+  background-color: #f8fbfe;
   background-image: url("/wa_bg.jpg");
-  background-size: contain
+  background-size: cover
 
 }
 

@@ -63,13 +63,19 @@ public class Chat extends BaseAuditingEntity {
      * @return O nome do chat.
      */
     @Transient
-    public String getChatName(final String senderId) {
+    public String getChatName(String senderId) {
         if (recipient.getId().equals(senderId)) {
             return sender.getFirstName() + " " + sender.getLastName();
         }
         return recipient.getFirstName() + " " + recipient.getLastName();
     }
-
+    @Transient
+    public String getTargetChatName(String senderId) {
+        if (sender.getId().equals(senderId)) {
+            return sender.getFirstName() + " " + sender.getLastName();
+        }
+        return recipient.getFirstName() + " " + recipient.getLastName();
+    }
     /**
      * Obtém a contagem de mensagens não lidas para um remetente específico.
      *

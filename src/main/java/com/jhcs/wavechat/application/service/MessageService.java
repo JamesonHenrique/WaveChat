@@ -52,7 +52,7 @@ public class MessageService {
                 .senderId(messageRequest.senderId())
                 .receiverId(messageRequest.receiverId())
                 .type(NotificationType.MESSAGE)
-                .chatName(chat.getChatName(messageRequest.senderId()))
+                .chatName(chat.getTargetChatName(messageRequest.senderId()))
                 .content(messageRequest.content())
                 .build();
         notificationService.sendNotification(message.getReceiverId(), notification);
