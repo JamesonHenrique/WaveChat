@@ -1,7 +1,7 @@
 
 
 
-# WaveChat ![Logo](public/WaveChatLogo.png)
+# WaveChat ![Logo](wavechat-ui/public/WaveChatLogo.png)
 Aqui está um índice para o seu projeto WaveChat:
 
 ## Índice
