@@ -15,7 +15,7 @@
           <span class="input-group-text">
             <i class="fas fa-search" ></i>
           </span>
-      <input type="text" class="form-control-sm" placeholder="Search in the chat" aria-label="Search">
+      <input type="text" class="form-control-sm" placeholder="Pesquisar no chat" aria-label="Search">
     </div>
 
   </div>
@@ -34,7 +34,7 @@
           <div class="d-flex flex-column">
             <span>{{ chat.name }}</span>
             <small class="text-secondary">
-              @if (chat.lastMessage === 'Attachment') {
+              @if (chat.lastMessage === 'Anexo') {
                 <i class="fas fa-image"></i>
               }
               {{ wrapMessage(chat.lastMessage) }}

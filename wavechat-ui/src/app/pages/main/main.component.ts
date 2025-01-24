@@ -149,9 +149,7 @@ export class MainComponent  implements OnInit, OnDestroy, AfterViewChecked {
     this.keycloakService.logout();
   }
 
-  userProfile() {
-    this.keycloakService.accountManagement();
-  }
+
 
   private setMessagesToSeen() {
     this.messageService.setMessageService({
@@ -188,7 +186,7 @@ export class MainComponent  implements OnInit, OnDestroy, AfterViewChecked {
       let ws = new SockJS('http://localhost:8080/wavechat-websocket');
       this.socketClient = Stomp.over(ws);
       const subUrl = `/user/${this.keycloakService.keycloak.tokenParsed?.sub}/chat`;
-      console.log
+
       this.socketClient.connect({'Authorization': 'Bearer ' + this.keycloakService.keycloak.token},
         () => {
           this.notificationSubscription = this.socketClient.subscribe(subUrl,
@@ -197,7 +195,7 @@ export class MainComponent  implements OnInit, OnDestroy, AfterViewChecked {
               this.handleNotification(notification);
 
             },
-            () => console.error('Error while connecting to webSocket')
+            () => console.error('Erro ao conectar ao webSocket')
             );
         }
       );
@@ -231,7 +229,7 @@ export class MainComponent  implements OnInit, OnDestroy, AfterViewChecked {
           this.chatMessages.forEach((m) => (m.state = 'SEEN'));
           break;
       }
-    } else {   console.log(notification.content)
+    } else {  
       const destChat = this.chats.find((c) => c.id === notification.chatId);
       if (destChat && notification.type !== 'SEEN') {
         if (notification.type === 'MESSAGE') {
