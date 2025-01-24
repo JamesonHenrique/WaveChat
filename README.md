@@ -2,7 +2,6 @@
 
 
 # WaveChat  <img src="wavechat-ui/public/WaveChatLogo.png" alt="Logo" width="40" height="40">
-Aqui está um índice para o seu projeto WaveChat:
 
 ## Índice
 
@@ -20,7 +19,7 @@ Aqui está um índice para o seu projeto WaveChat:
 - [Contribuição](#contribuição)
 - [Contato](#contato)
 
-Você pode adicionar esse índice ao seu README logo após o título do projeto.
+
 ## Descrição
 O WaveChat é uma aplicação de chat em tempo real composta por duas partes: o backend, desenvolvido em Java com Spring Boot, e o frontend, desenvolvido em Angular. Essas partes trabalham juntas para oferecer uma experiência de chat robusta e responsiva.
 
