@@ -45,7 +45,6 @@ O WaveChat é uma aplicação de chat em tempo real composta por duas partes: o 
 
 ```Estrutura 
 wavechat/
-├── backend/
 │   ├── src
 │   │   ├── main
 │   │   │   └── java
