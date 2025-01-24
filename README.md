@@ -32,11 +32,14 @@ O WaveChat é uma aplicação de chat em tempo real composta por duas partes: o 
 - **JPA/Hibernate**: Para interação com o banco de dados.
 - **WebSocket**: Para comunicação em tempo real.
 - **Swagger**: Para documentação da API.
+- **Docker**: Para usar docker-compose.
 
 ### Frontend
 - **Angular**: Framework para construção de aplicações web.
 - **RxJS**: Biblioteca para programação reativa.
 - **SockJS**: Biblioteca para comunicação WebSocket.
+- **Boostrap**: Biblioteca para melhorar a interface.
+- **Font Awesome**: Biblioteca para usar icons.
 - **StompJS**: Protocolo para comunicação em tempo real.
 - **Keycloak**: Sistema de gerenciamento de identidade e acesso.
 - **ngx-emoji-mart**: Biblioteca para seleção de emojis.
