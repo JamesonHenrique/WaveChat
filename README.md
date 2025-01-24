@@ -126,8 +126,8 @@ wavechat/
 Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
 
 ## Contato
-```
+
 Para mais informações, entre em contato com [jamesonhenrique14@gmail.com](mailto:jamesonhenrique14@gmail.com).
-```
+
 
 
