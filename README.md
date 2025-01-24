@@ -1,7 +1,7 @@
 
 
 
-# WaveChat ![Logo](wavechat-ui/public/WaveChatLogo.png)
+# WaveChat<img src="wavechat-ui/public/WaveChatLogo.png" alt="Logo" width="100" height="100">
 Aqui está um índice para o seu projeto WaveChat:
 
 ## Índice
