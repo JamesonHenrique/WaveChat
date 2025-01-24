@@ -1,2 +1,81 @@
-# WaveChat
- 
+#WaveChat
+Descrição
+O WaveChat é uma aplicação de chat em tempo real que consiste em duas partes: o backend, desenvolvido em Java com Spring Boot, e o frontend, desenvolvido em Angular. Juntas, essas partes permitem que os usuários se comuniquem de forma eficiente, enviando mensagens de texto e mídia, além de gerenciar chats e notificações.
+Tecnologias Utilizadas
+Backend
+Java: Linguagem de programação principal.
+Spring Boot: Framework para construção de aplicações Java.
+Spring Security: Para autenticação e autorização.
+JPA/Hibernate: Para interação com o banco de dados.
+WebSocket: Para comunicação em tempo real.
+Swagger: Para documentação da API.
+Frontend
+Angular: Framework para construção de aplicações web.
+RxJS: Biblioteca para programação reativa.
+SockJS: Biblioteca para comunicação WebSocket.
+StompJS: Protocolo para comunicação em tempo real.
+Keycloak: Sistema de gerenciamento de identidade e acesso.
+ngx-emoji-mart: Biblioteca para seleção de emojis.
+Estrutura do Projeto
+wavechat/
+├── backend/
+│   ├── src
+│   │   ├── main
+│   │   │   └── java
+│   │   │       └── com
+│   │   │           └── jhcs
+│   │   │               └── wavechat
+│   │   │                   ├── application
+│   │   │                   ├── domain
+│   │   │                   └── infrastructure
+│   │   └── resources
+│   │       └── application.properties
+└── wavechat-ui/
+    ├── src/
+    │   ├── app/
+    │   │   ├── components/
+    │   │   ├── pages/
+    │   │   ├── services/
+    │   │   └── utils/
+    │   ├── openapi/
+    │   ├── assets/
+    │   └── environments/
+    ├── package.json
+    └── angular.json
+Configuração do Ambiente
+Backend
+1. Clone o repositório:
+   git clone https://github.com/seu_usuario/wavechat.git
+   cd wavechat/backend
+2. Configure o banco de dados no arquivo application.properties:
+   spring.datasource.url=jdbc:mysql://localhost:3306/wavechat
+   spring.datasource.username=seu_usuario
+   spring.datasource.password=sua_senha
+3. Compile o projeto e Execute a aplicação:
+Frontend
+1. Navegue até o diretório do frontend:
+      cd wavechat-ui
+2. Instale as dependências:
+      npm install
+3. Configure o Keycloak para autenticação. Certifique-se de que o servidor Keycloak esteja em execução e que você tenha um cliente configurado.
+4. As variáveis de ambiente podem ser configuradas no arquivo src/environments/environment.ts. Defina as URLs corretas para o seu servidor de backend e Keycloak.
+5. Execute a aplicação:
+      ng serve
+Funcionalidades
+Backend
+Gerenciamento de Usuários: Criação, autenticação e recuperação de informações de usuários.
+Mensagens: Envio e recebimento de mensagens de texto e mídia.
+Chats: Criação e gerenciamento de chats entre usuários.
+Notificações: Notificações em tempo real para mensagens recebidas e status de leitura.
+Frontend
+Autenticação: Os usuários podem se autenticar usando o Keycloak.
+Gerenciamento de Chats: Os usuários podem visualizar e selecionar chats existentes.
+Envio de Mensagens: Os usuários podem enviar mensagens de texto e mídia.
+Notificações em Tempo Real: As mensagens recebidas são exibidas em tempo real.
+Emojis: Os usuários podem adicionar emojis às suas mensagens.
+Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
+Licença
+Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
+Contato
+Para mais informações, entre em contato com jamesonhenrique14@gmail.com
