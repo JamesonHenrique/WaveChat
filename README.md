@@ -18,7 +18,6 @@ Aqui está um índice para o seu projeto WaveChat:
     - [Backend](#backend-2)
     - [Frontend](#frontend-2)
 - [Contribuição](#contribuição)
-- [Licença](#licença)
 - [Contato](#contato)
 
 Você pode adicionar esse índice ao seu README logo após o título do projeto.
@@ -125,9 +124,6 @@ wavechat/
 
 ## Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
-
-## Licença
-Este projeto está licenciado sob a MIT License. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## Contato
 Para mais informações, entre em contato com [jamesonhenrique14@gmail.com](mailto:jamesonhenrique14@gmail.com).
