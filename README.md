@@ -45,17 +45,31 @@ O WaveChat é uma aplicação de chat em tempo real composta por duas partes: o 
 
 ```Estrutura 
 wavechat/
-│   ├── src
-│   │   ├── main
-│   │   │   └── java
-│   │   │       └── com
-│   │   │           └── jhcs
-│   │   │               └── wavechat
-│   │   │                   ├── application
-│   │   │                   ├── domain
-│   │   │                   └── infrastructure
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── jhcs
+│   │   │           └── wavechat
+│   │   │               ├── application
+│   │   │               │   ├── dto
+│   │   │               │   ├── service
+│   │   │               ├── domain
+│   │   │               │   ├── common
+│   │   │               │   ├── constants
+│   │   │               │   ├── constants
+│   │   │               │   ├── entity
+│   │   │               │   ├── enums
+│   │   │               └── infrastructure
+│   │   │                   ├── adapter
+│   │   │                   │   ├── controller
+│   │   │                   │   └── mapper
+│   │   │                   ├── config
+│   │   │                   ├── notification
+│   │   │                   ├── security
+│   │   │                   └── util
 │   │   └── resources
-│   │       └── application.properties
+│   │       └── application.yml   
 └── wavechat-ui/
     ├── src/
     │   ├── app/
@@ -64,7 +78,6 @@ wavechat/
     │   │   ├── services/
     │   │   └── utils/
     │   ├── openapi/
-    │   ├── assets/
     │   └── environments/
     ├── package.json
     └── angular.json
