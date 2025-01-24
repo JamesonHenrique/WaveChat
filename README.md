@@ -1,7 +1,7 @@
 
 
 
-# WaveChat  <img src="wavechat-ui/public/WaveChatLogo.png" alt="Logo" width="50" height="60">
+# WaveChat  <img src="wavechat-ui/public/WaveChatLogo.png" alt="Logo" width="40" height="40">
 Aqui está um índice para o seu projeto WaveChat:
 
 ## Índice
