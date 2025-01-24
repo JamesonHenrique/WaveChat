@@ -6,6 +6,9 @@
 ## Índice
 
 - [Descrição](#descrição)
+- [Funcionalidades](#funcionalidades)
+    - [Backend](#backend-2)
+    - [Frontend](#frontend-2)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
     - [Backend](#backend)
     - [Frontend](#frontend)
@@ -13,16 +16,28 @@
 - [Configuração do Ambiente](#configuração-do-ambiente)
     - [Backend](#backend-1)
     - [Frontend](#frontend-1)
-- [Funcionalidades](#funcionalidades)
-    - [Backend](#backend-2)
-    - [Frontend](#frontend-2)
+
 - [Contribuição](#contribuição)
 - [Contato](#contato)
 
 
 ## Descrição
 O Bate Papo Wave Chat é uma aplicação de chat em tempo real que permite a comunicação instantânea entre usuários. Desenvolvido com o framework Angular junto com Spring Boot, o Wave Chat oferece uma interface intuitiva e responsiva, permitindo que os usuários enviem mensagens de texto e mídia, gerenciem suas conversas e recebam notificações em tempo real.
+## Funcionalidades
 
+### Backend
+- **Gerenciamento de Usuários**: Criação, autenticação e recuperação de informações de usuários.
+- **Mensagens**: Envio e recebimento de mensagens de texto e mídia.
+- **Chats**: Criação e gerenciamento de chats entre usuários.
+- **Notificações**: Notificações em tempo real para mensagens recebidas e status de leitura.
+
+### Frontend
+- **Autenticação**: Os usuários podem se autenticar usando o Keycloak.
+- **Gerenciamento de Chats**: Os usuários podem visualizar e selecionar chats existentes.
+- **Envio de Mensagens**: Os usuários podem enviar mensagens de texto e mídia.
+- **Notificações em Tempo Real**: As mensagens recebidas são exibidas em tempo real.
+- **Emojis**: Os usuários podem adicionar emojis às suas mensagens.
+  
 ## Tecnologias Utilizadas
 
 ### Backend
@@ -124,21 +139,6 @@ wavechat/
    ```sh
    ng serve
    ```
-
-## Funcionalidades
-
-### Backend
-- **Gerenciamento de Usuários**: Criação, autenticação e recuperação de informações de usuários.
-- **Mensagens**: Envio e recebimento de mensagens de texto e mídia.
-- **Chats**: Criação e gerenciamento de chats entre usuários.
-- **Notificações**: Notificações em tempo real para mensagens recebidas e status de leitura.
-
-### Frontend
-- **Autenticação**: Os usuários podem se autenticar usando o Keycloak.
-- **Gerenciamento de Chats**: Os usuários podem visualizar e selecionar chats existentes.
-- **Envio de Mensagens**: Os usuários podem enviar mensagens de texto e mídia.
-- **Notificações em Tempo Real**: As mensagens recebidas são exibidas em tempo real.
-- **Emojis**: Os usuários podem adicionar emojis às suas mensagens.
 
 ## Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
