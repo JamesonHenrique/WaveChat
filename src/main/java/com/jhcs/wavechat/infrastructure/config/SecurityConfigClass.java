@@ -47,7 +47,7 @@ public class SecurityConfigClass {
                                                 "/swagger-ui/**",
                                                 "/webjars/**",
                                                 "/swagger-ui.html",
-                                                "/ws/**")
+                                                "/wavechat-websocket/**")
                                         .permitAll()
                                         .anyRequest().authenticated()
                                       )

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ChatListComponent } from '../../components/chat-list/chat-list.component';
 import { ChatResponse, MessageResponse } from '../../services/models';
 import { ChatService, MensagemService } from '../../services/services';
@@ -19,7 +19,7 @@ import { Notification } from './models/notification';
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
-export class MainComponent  {
+export class MainComponent  implements OnInit, OnDestroy, AfterViewChecked {
   selectedChat: ChatResponse = {};
   chats: Array<ChatResponse> = [];
   chatMessages: Array<MessageResponse> = [];
@@ -33,25 +33,22 @@ export class MainComponent  {
     private keycloakService: KeycloakService,
     private messageService: MensagemService
   ) {}
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
   ngOnDestroy(): void {
    if(this.socketClient !== null) {
       this.socketClient.disconnect();
       this.notificationSubscription.unsubcribe();
       this.socketClient = null;
    }
-   
+
   }
-  ngOnit() {
+
+  ngOnInit() {
     this.initWebSocket();
     this.getAllChats();
-  }
-  logout() {
-    console.log('logout');
-    this.keycloakService.logout();
-  }
-  userProfile() {
-    console.log('userProfile');
-    this.keycloakService.accountManagement();
+
   }
   chatSelected(chatResponse: ChatResponse) {
     this.selectedChat = chatResponse;
@@ -59,123 +56,149 @@ export class MainComponent  {
     this.setMessagesToSeen();
     this.selectedChat.unreadCount = 0;
   }
+
   isSelfMessage(message: MessageResponse): boolean {
     return message.senderId === this.keycloakService.userId;
   }
-  private getAllChats() {
-    this.chatService.getChatsByReceiver().subscribe({
-      next: (res) => {
-        this.chats = res;
-      },
-      error: (err) => {},
-    });
-  }
-  private getAllChatMessages(chatId: string) {
-    this.messageService
-      .getMessages({
-        'chat-id': chatId,
-      })
-      .subscribe({
-        next: (messages) => {
-          this.chatMessages = messages;
-        },
-        error: (err) => {},
-      });
-  }
-  private setMessagesToSeen() {
-    this.messageService
-      .setMessageService({
-        'chat-id': this.selectedChat.id as string,
-      })
-      .subscribe({
-        next: (res) => {},
-        error: (err) => {},
-      });
-  }
-  uploadMedia(target: EventTarget | null) {
-    const files = (target as HTMLInputElement).files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const media = (e.target as FileReader).result as string;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-  onSelectEmojis(emojiSelected: any) {
-    const emoji: EmojiData = emojiSelected.emoji;
-    this.messageContent += emoji.native;
-  }
-  keyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      this.sendMessage();
-    }
-  }
-  onClick() {
-    this.setMessagesToSeen();
-  }
+
   sendMessage() {
     if (this.messageContent) {
       const messageRequest: MessageRequest = {
-        chatId: this.selectedChat.id as string,
+        chatId: this.selectedChat.id,
         senderId: this.getSenderId(),
         receiverId: this.getReceiverId(),
         content: this.messageContent,
         type: 'TEXT',
       };
-      this.messageService
-        .saveMessage({
-          body: messageRequest,
-        })
-        .subscribe({
-          next: (res) => {
-            const message: MessageResponse = {
-              senderId: this.getSenderId(),
-              receiverId: this.getReceiverId(),
-              content: this.messageContent,
-              type: 'TEXT',
-              state: 'SENT',
-              createdAt: new Date().toString(),
-            };
-            this.selectedChat.lastMessage = this.messageContent;
-            this.chatMessages.push(message);
-            this.messageContent = '';
-            this.showEmojis = false;
-          },
-          error: (err) => {},
-        });
+
+      this.messageService.saveMessage(
+       {
+        body: messageRequest,
+
+      }).subscribe({
+        next: () => {
+          const message: MessageResponse = {
+            senderId: this.getSenderId(),
+            receiverId: this.getReceiverId(),
+            content: this.messageContent,
+            type: 'TEXT',
+            state: 'SENT',
+            createdAt: new Date().toString()
+          };
+
+          this.selectedChat.lastMessage = this.messageContent;
+          this.chatMessages.push(message);
+          this.messageContent = '';
+          this.showEmojis = false;
+        }
+      });
     }
   }
-  private getSenderId(): string {
-    if (this.selectedChat.senderId === this.keycloakService.userId) {
-      return this.selectedChat.senderId as string;
+
+  keyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.sendMessage();
     }
-    return this.selectedChat.receiverId as string;
   }
-  private getReceiverId(): string {
-    if (this.selectedChat.senderId === this.keycloakService.userId) {
-      return this.selectedChat.receiverId as string;
+
+  onSelectEmojis(emojiSelected: any) {
+    const emoji: EmojiData = emojiSelected.emoji;
+    this.messageContent += emoji.native;
+  }
+
+  onClick() {
+    this.setMessagesToSeen();
+  }
+
+  uploadMedia(target: EventTarget | null) {
+    const file = this.extractFileFromTarget(target);
+    if (file !== null) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+
+          const mediaLines = reader.result.toString().split(',')[1];
+
+          this.messageService.uploadMedia({
+            'chat-id': this.selectedChat.id as string,
+            body: {
+              media: file as Blob
+            }
+          }).subscribe({
+            next: () => {
+              const message: MessageResponse = {
+                senderId: this.getSenderId(),
+                receiverId: this.getReceiverId(),
+                content: 'Anexo',
+                type: 'IMAGE',
+                state: 'SENT',
+                media: [mediaLines],
+                createdAt: new Date().toString()
+              };
+
+              this.chatMessages.push(message);
+            }
+          });
+        }
+      }
+      reader.readAsDataURL(file);
     }
-    return this.selectedChat.senderId as string;
   }
+
+  logout() {
+    this.keycloakService.logout();
+  }
+
+  userProfile() {
+    this.keycloakService.accountManagement();
+  }
+
+  private setMessagesToSeen() {
+    this.messageService.setMessageService({
+      'chat-id': this.selectedChat.id as string
+    }).subscribe({
+      next: () => {
+      }
+    });
+  }
+
+  private getAllChats() {
+    this.chatService.getChatsByReceiver()
+      .subscribe({
+        next: (res) => {
+          this.chats = res;
+        }
+      });
+  }
+
+  private getAllChatMessages(chatId: string) {
+    this.messageService.getMessages({
+      'chat-id': chatId
+    }).subscribe({
+      next: (messages) => {
+
+        this.chatMessages = messages;
+
+      }
+    });
+  }
+
   private initWebSocket() {
     if (this.keycloakService.keycloak.tokenParsed?.sub) {
-      const ws = new SockJS('http://localhost:8080/ws');
+      let ws = new SockJS('http://localhost:8080/wavechat-websocket');
       this.socketClient = Stomp.over(ws);
-      const subUrl =
-        '/user/${this.keycloakService.keycloak.tokenParsed.sub}/chat';
-      this.socketClient.connect(
-        { Authorization: 'Bearer' + this.keycloakService.keycloak.token },
+      const subUrl = `/user/${this.keycloakService.keycloak.tokenParsed?.sub}/chat`;
+      console.log
+      this.socketClient.connect({'Authorization': 'Bearer ' + this.keycloakService.keycloak.token},
         () => {
-          this.notificationSubscription = this.socketClient.subscribe(
-            subUrl,
+          this.notificationSubscription = this.socketClient.subscribe(subUrl,
             (message: any) => {
               const notification: Notification = JSON.parse(message.body);
               this.handleNotification(notification);
+
             },
-            () => console.error('Erro ao conectar no websocket')
-          );
+            () => console.error('Error while connecting to webSocket')
+            );
         }
       );
     }
@@ -183,6 +206,7 @@ export class MainComponent  {
   private handleNotification(notification: Notification) {
     if (!notification) return;
     if (this.selectedChat && this.selectedChat.id === notification.chatId) {
+
       switch (notification.type) {
         case 'MESSAGE':
         case 'IMAGE':
@@ -197,15 +221,17 @@ export class MainComponent  {
           if (notification.type === 'IMAGE') {
             this.selectedChat.lastMessage = 'Anexo';
           } else {
+
             this.selectedChat.lastMessage = notification.content;
           }
+
           this.chatMessages.push(message);
           break;
         case 'SEEN':
           this.chatMessages.forEach((m) => (m.state = 'SEEN'));
           break;
       }
-    } else {
+    } else {   console.log(notification.content)
       const destChat = this.chats.find((c) => c.id === notification.chatId);
       if (destChat && notification.type !== 'SEEN') {
         if (notification.type === 'MESSAGE') {
@@ -229,6 +255,19 @@ export class MainComponent  {
       }
     }
   }
+  private getSenderId(): string {
+    if (this.selectedChat.senderId === this.keycloakService.userId) {
+      return this.selectedChat.senderId as string;
+    }
+    return this.selectedChat.receiverId as string;
+  }
+
+  private getReceiverId(): string {
+    if (this.selectedChat.senderId === this.keycloakService.userId) {
+      return this.selectedChat.receiverId as string;
+    }
+    return this.selectedChat.senderId as string;
+  }
 
   private scrollToBottom() {
     if (this.scrollableDiv) {
@@ -243,5 +282,5 @@ export class MainComponent  {
       return null;
     }
     return htmlInputTarget.files[0];
-  }
+ }
 }

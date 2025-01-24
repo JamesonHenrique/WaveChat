@@ -14,51 +14,54 @@ import { KeycloakService } from '../../utils/keycloak/keycloak.service';
 export class ChatListComponent {
   chats: InputSignal<ChatResponse[]> = input<ChatResponse[]>([]);
   searchNewContact = false;
-  chatSelected = output<ChatResponse>();
   contacts: Array<UserResponse> = [];
+  chatSelected = output<ChatResponse>();
+
   constructor(
     private chatService: ChatService,
     private userService: UsuarioService,
     private keycloakService: KeycloakService
-  ) {}
-  searchContact() {
-    console.log('searchContact');
-
-    this.userService.getAllUsers().subscribe({
-      next: (res) => {
-        this.searchNewContact = true;
-        this.contacts = res;
-      },
-      error: (err) => {},
-    });
+  ) {
   }
-  logout() {}
+
+  searchContact() {
+    this.userService.getAllUsers()
+      .subscribe({
+        next: (users) => {
+          this.contacts = users;
+          this.searchNewContact = true;
+        }
+      });
+  }
+
+  selectContact(contact: UserResponse) {
+    this.chatService.createChat({
+      'sender-id': this.keycloakService.userId as string,
+      'receiver-id': contact.id as string
+    }).subscribe({
+      next: (res) => {
+        const chat: ChatResponse = {
+          id: res.response,
+          name: contact.firstName + ' ' + contact.lastName,
+          isRecipientOnline: contact.isOnline,
+          lastMessageTime: contact.lastSeen,
+          senderId: this.keycloakService.userId,
+          receiverId: contact.id
+        };
+        this.chats().unshift(chat);
+        this.searchNewContact = false;
+        this.chatSelected.emit(chat);
+      }
+    });
+
+  }
+  userProfile() {
+    this.keycloakService.accountManagement();
+  }
   chatClicked(chat: ChatResponse) {
     this.chatSelected.emit(chat);
   }
-  selectContact(contact: UserResponse) {
-    this.chatService.createChat(
-      {
-        'sender-id': this.keycloakService.userId as string,
-        'receiver-id':contact.id as string,
-      }
-    ).subscribe({
-      next: (res) => {
-       const chat:ChatResponse = {
-        id:res.response,
-        name:contact.firstName + ' ' + contact.lastName,
-        isRecipientOnline: contact.isOnline,
-        lastMessageTime: contact.lastSeen,
-        senderId: this.keycloakService.userId ,
-        receiverId: contact.id ,
-       }
-       this.chats().unshift(chat);
-       this.searchNewContact = false;
-       this.chatSelected.emit(chat);
-      },
-      error: (err) => {},
-    });
-  }
+
   wrapMessage(lastMessage: string | undefined): string {
     if (lastMessage && lastMessage.length <= 20) {
       return lastMessage;

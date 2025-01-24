@@ -6,7 +6,7 @@
   background: #ccc;
 }
 
-.background-green {
+.background-blue {
   position: absolute;
   top: 0;
   width: 100%;
@@ -16,17 +16,18 @@
 
 .main-container {
   position: relative;
-  width: 98%;
+  width: 99%;
   max-width: 100%;
   height: calc(100vh - 40px);
   background: #fff;
+
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5), 0 2px 5px 0 rgba(0, 0, 0, 0.6);
 }
 .logo-name {
   margin-top: -87px;
 }
 .online-status {
-  background: #1fa855;
+  background: #0596eb;
   min-width: 10px;
   max-width: 10px;
   height: 10px;
@@ -52,14 +53,17 @@
 }
 
 .bg-chat {
-    background-blend-mode: overlay;
-  background-color: #f8fbfe;
+    background-blend-mode: overlay   ;
+  background-color: #f5f8fb;
   background-image: url("/wa_bg.jpg");
   background-size: cover
 
 }
 
-
+.border{
+  border-left: 1px solid #ff0000;
+  border-radius: 45px;
+}
 
 .message-box {
   position: relative;
@@ -72,7 +76,7 @@
       position: relative;
       right: 0;
       text-align: right;
-      background: #d9fdd3;
+      background: #d3f3fd;
       max-width: 65%;
       padding: 10px 10px 0 10px;
       border-radius: 5px;
@@ -99,7 +103,7 @@
       position: relative;
       right: 0;
       text-align: left;
-      background: #fff;
+      background: #f3f3f3;
       max-width: 65%;
       padding: 10px 10px 0 10px;
       border-radius: 5px;
@@ -120,6 +124,7 @@
 
 i {
   &.seen {
+
     color: #53bdeb;
   }
   &.ml-neg {
@@ -131,4 +136,8 @@ i {
   position: absolute;
   left: 350px;
   bottom: 50px;
+}
+.wave-seen {
+  height: 35px;
+  color: #53bdeb;
 }

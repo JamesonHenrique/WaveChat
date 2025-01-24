@@ -24,7 +24,7 @@ import java.util.List;
 @NamedQuery(name = UserConstants.FIND_ALL_USERS_EXCEPT_SELF, query = "SELECT u FROM User u WHERE u.id != :publicId")
 @NamedQuery(name = UserConstants.FIND_USER_BY_PUBLIC_ID, query = "SELECT u FROM User u WHERE u.id = :publicId")
 public class User extends BaseAuditingEntity {
-    private static final int LAST_ACTIVATE_INTERVAL = 5;
+    private static final int LAST_ACTIVATE_INTERVAL = 1;
 
     /**
      * Identificador único do usuário.

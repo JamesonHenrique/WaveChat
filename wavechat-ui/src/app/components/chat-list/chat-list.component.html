@@ -1,33 +1,27 @@
-<div class="sticky-top bg-white">
+<div class="sticky-top gray-bg ">
   <div class="d-flex justify-content-between align-items-center gap-2 p-2">
-    <h4>Chat</h4>
-    @if (!searchNewContact) {
-      <i class="fa fa-plus cursor-pointer" (click)="searchContact()"></i>
-
-    } @else {
-      <i class="fas fa-times-circle cursor-pointer" (click)="searchNewContact = false"></i>
-
-
-    }
-
+    <h4 class="me-auto">WaveChat</h4>
+    <div class="d-flex gap-2">
+      @if (!searchNewContact) {
+        <i class="fa fa-plus-circle g cursor-pointer" (click)="searchContact()"></i>
+        <i class="fa-solid g fa-ellipsis-vertical" (click)="userProfile()"></i>
+      } @else {
+        <i class="fas fa-times-circle cursor-pointer" (click)="searchNewContact = false"></i>
+      }
+    </div>
   </div>
   <div class="d-flex flex-column gap-1 p-2">
     <div class="input-group">
           <span class="input-group-text">
-            <i class="fas fa-search" (click)="logout()"></i>
+            <i class="fas fa-search" ></i>
           </span>
       <input type="text" class="form-control-sm" placeholder="Search in the chat" aria-label="Search">
     </div>
-    <div class="d-flex gap-2">
-      <span class="badge rounded-pill text-bg-light cursor-pointer">Todos</span>
-      <span class="badge rounded-pill text-bg-light cursor-pointer">Não lidos</span>
-      <span class="badge rounded-pill text-bg-light cursor-pointer">Favoritos</span>
 
-    </div>
   </div>
 
 </div>
-<div class="chat-list mt-3">
+<div class="chat-list  mt-3">
   @if (chats().length && !searchNewContact) {
     @for (chat of chats(); track chat) {
       <div class="d-flex align-items-center justify-content-between border-bottom-gray p-2"
