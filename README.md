@@ -22,7 +22,7 @@
 
 
 ## Descrição
-O Bate Papo Wave Chat é uma aplicação de chat em tempo real que permite a comunicação instantânea entre usuários. Desenvolvido com o framework Angular junto com Spring Boot, o Wave Chat oferece uma interface intuitiva e responsiva, permitindo que os usuários enviem mensagens de texto e mídia, gerenciem suas conversas e recebam notificações em tempo real.
+O Bate Papo WaveChat é uma aplicação de chat em tempo real que permite a comunicação instantânea entre usuários. Desenvolvido com o framework Angular junto com Spring Boot, o Wave Chat oferece uma interface intuitiva e responsiva, permitindo que os usuários enviem mensagens de texto e mídia, gerenciem suas conversas e recebam notificações em tempo real.
 ## Funcionalidades
 
 ### Backend
