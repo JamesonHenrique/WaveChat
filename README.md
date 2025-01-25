@@ -7,15 +7,15 @@
 
 - [Descrição](#descrição)
 - [Funcionalidades](#funcionalidades)
-    - [Backend](#backend-2)
-    - [Frontend](#frontend-2)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
     - [Backend](#backend)
     - [Frontend](#frontend)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Configuração do Ambiente](#configuração-do-ambiente)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
     - [Backend](#backend-1)
     - [Frontend](#frontend-1)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Configuração do Ambiente](#configuração-do-ambiente)
+    - [Backend](#backend-2)
+    - [Frontend](#frontend-2)
 
 - [Contribuição](#contribuição)
 - [Contato](#contato)
@@ -50,7 +50,6 @@ O Bate Papo WaveChat é uma aplicação de chat em tempo real que permite a comu
 - **Spring Data JPA**
 - **Validação JSR-303 e do Spring**
 - **Autenticação com Keycloak**
-     **WebSocket**
 - **WebSocket**
 - **Swagger**
 - **Docker**
@@ -114,13 +113,14 @@ wavechat/
 1. Clone o repositório:
    ```sh
    git clone https://github.com/JamesonHenrique/WaveChat.git
-   cd wavechat/backend
    ```
-2. Configure o banco de dados no arquivo `application.properties`:
+2. Configure o banco de dados no arquivo `application.yml`:
    ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/wavechat
-   spring.datasource.username=seu_usuario
-   spring.datasource.password=sua_senha
+   spring:
+     datasource:
+       url: jdbc:postgresql://localhost:5432/wavechat
+       username: seu_usuario
+       password: sua_senha
    ```
 3. Compile o projeto e execute a aplicação:
    ```sh
