@@ -37,7 +37,10 @@ O Bate Papo WaveChat é uma aplicação de chat em tempo real que permite a comu
 - **Envio de Mensagens**: Os usuários podem enviar mensagens de texto e mídia.
 - **Notificações em Tempo Real**: As mensagens recebidas são exibidas em tempo real.
 - **Emojis**: Os usuários podem adicionar emojis às suas mensagens.
-  
+
+#### Diagrama de classes
+![Diagrama de classes]wavechat-ui/public/diagrama.png)
+
 ## Tecnologias Utilizadas
 
 ### Backend
