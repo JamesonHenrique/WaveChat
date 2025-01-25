@@ -39,7 +39,7 @@ O Bate Papo WaveChat é uma aplicação de chat em tempo real que permite a comu
 - **Emojis**: Os usuários podem adicionar emojis às suas mensagens.
 
 #### Diagrama de classes
-![Diagrama de classes]wavechat-ui/public/diagrama.png)
+![Diagrama de classes](wavechat-ui/public/diagrama.png)
 
 ## Tecnologias Utilizadas
 
