@@ -114,7 +114,7 @@ wavechat/
    ```sh
    git clone https://github.com/JamesonHenrique/WaveChat.git
    ```
-2. Configure o banco de dados no arquivo `application.properties`:
+2. Configure o banco de dados no arquivo `application.yml`:
    ```properties
    spring.datasource.url=jdbc:postgresql://localhost:5432/wavechat
    spring.datasource.username=seu_usuario
