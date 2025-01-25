@@ -117,10 +117,10 @@ wavechat/
 2. Configure o banco de dados no arquivo `application.yml`:
    ```properties
    spring:
-    datasource:
-    url: jdbc:postgresql://localhost:5432/wavechat
-    username: postgres
-    password: root
+     datasource:
+       url: jdbc:postgresql://localhost:5432/wavechat
+       username: seu_usuario
+       password: sua_senha
    ```
 3. Compile o projeto e execute a aplicação:
    ```sh
