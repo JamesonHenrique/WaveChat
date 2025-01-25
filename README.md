@@ -113,7 +113,6 @@ wavechat/
 1. Clone o repositório:
    ```sh
    git clone https://github.com/JamesonHenrique/WaveChat.git
-   cd wavechat/backend
    ```
 2. Configure o banco de dados no arquivo `application.properties`:
    ```properties
