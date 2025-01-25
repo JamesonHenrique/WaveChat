@@ -50,7 +50,6 @@ O Bate Papo WaveChat é uma aplicação de chat em tempo real que permite a comu
 - **Spring Data JPA**
 - **Validação JSR-303 e do Spring**
 - **Autenticação com Keycloak**
-     **WebSocket**
 - **WebSocket**
 - **Swagger**
 - **Docker**
