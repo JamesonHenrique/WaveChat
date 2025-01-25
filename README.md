@@ -1,12 +1,14 @@
 
 
 
-# WaveChat
-Aqui está um índice para o seu projeto WaveChat:
+# <img src="wavechat-ui/public/WaveChatLogo.png" alt="Logo" width="60" height="60">   WaveChat 🌊
 
 ## Índice
 
 - [Descrição](#descrição)
+- [Funcionalidades](#funcionalidades)
+    - [Backend](#backend-2)
+    - [Frontend](#frontend-2)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
     - [Backend](#backend)
     - [Frontend](#frontend)
@@ -14,50 +16,85 @@ Aqui está um índice para o seu projeto WaveChat:
 - [Configuração do Ambiente](#configuração-do-ambiente)
     - [Backend](#backend-1)
     - [Frontend](#frontend-1)
-- [Funcionalidades](#funcionalidades)
-    - [Backend](#backend-2)
-    - [Frontend](#frontend-2)
+
 - [Contribuição](#contribuição)
 - [Contato](#contato)
 
-Você pode adicionar esse índice ao seu README logo após o título do projeto.
+
 ## Descrição
-O WaveChat é uma aplicação de chat em tempo real composta por duas partes: o backend, desenvolvido em Java com Spring Boot, e o frontend, desenvolvido em Angular. Essas partes trabalham juntas para oferecer uma experiência de chat robusta e responsiva.
+O Bate Papo WaveChat é uma aplicação de chat em tempo real que permite a comunicação instantânea entre usuários. Desenvolvido com o framework Angular junto com Spring Boot, o Wave Chat oferece uma interface intuitiva e responsiva, permitindo que os usuários enviem mensagens de texto e mídia, gerenciem suas conversas e recebam notificações em tempo real.
+## Funcionalidades
+
+### Backend
+- **Gerenciamento de Usuários**: Criação, autenticação e recuperação de informações de usuários.
+- **Mensagens**: Envio e recebimento de mensagens de texto e mídia.
+- **Chats**: Criação e gerenciamento de chats entre usuários.
+- **Notificações**: Notificações em tempo real para mensagens recebidas e status de leitura.
+
+### Frontend
+- **Autenticação**: Os usuários podem se autenticar usando o Keycloak.
+- **Gerenciamento de Chats**: Os usuários podem visualizar e selecionar chats existentes.
+- **Envio de Mensagens**: Os usuários podem enviar mensagens de texto e mídia.
+- **Notificações em Tempo Real**: As mensagens recebidas são exibidas em tempo real.
+- **Emojis**: Os usuários podem adicionar emojis às suas mensagens.
+
+#### Diagrama de classes
+![Diagrama de classes](wavechat-ui/public/diagrama.png)
 
 ## Tecnologias Utilizadas
 
 ### Backend
-- **Java**: Linguagem de programação principal.
-- **Spring Boot**: Framework para construção de aplicações Java.
-- **Spring Security**: Para autenticação e autorização.
-- **JPA/Hibernate**: Para interação com o banco de dados.
-- **WebSocket**: Para comunicação em tempo real.
-- **Swagger**: Para documentação da API.
+- **Java**
+- **Spring Boot**
+- **Spring Security**
+- **Spring Data JPA**
+- **Validação JSR-303 e do Spring**
+- **Autenticação com Keycloak**
+     **WebSocket**
+- **WebSocket**
+- **Swagger**
+- **Docker**
 
 ### Frontend
-- **Angular**: Framework para construção de aplicações web.
-- **RxJS**: Biblioteca para programação reativa.
-- **SockJS**: Biblioteca para comunicação WebSocket.
-- **StompJS**: Protocolo para comunicação em tempo real.
-- **Keycloak**: Sistema de gerenciamento de identidade e acesso.
-- **ngx-emoji-mart**: Biblioteca para seleção de emojis.
+- **Angular**
+- **SockJS**
+- **Boostrap**
+- **Font Awesome**
+- **StompJS**
+- **Keycloak**
+- **Gerador OpenAPI para Angular**
+- **Ngx-emoji-mart**
+
 
 ## Estrutura do Projeto
 
 ```Estrutura 
 wavechat/
-├── backend/
-│   ├── src
-│   │   ├── main
-│   │   │   └── java
-│   │   │       └── com
-│   │   │           └── jhcs
-│   │   │               └── wavechat
-│   │   │                   ├── application
-│   │   │                   ├── domain
-│   │   │                   └── infrastructure
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── jhcs
+│   │   │           └── wavechat
+│   │   │               ├── application
+│   │   │               │   ├── dto
+│   │   │               │   ├── service
+│   │   │               ├── domain
+│   │   │               │   ├── common
+│   │   │               │   ├── constants
+│   │   │               │   ├── constants
+│   │   │               │   ├── entity
+│   │   │               │   ├── enums
+│   │   │               └── infrastructure
+│   │   │                   ├── adapter
+│   │   │                   │   ├── controller
+│   │   │                   │   └── mapper
+│   │   │                   ├── config
+│   │   │                   ├── notification
+│   │   │                   ├── security
+│   │   │                   └── util
 │   │   └── resources
-│   │       └── application.properties
+│   │       └── application.yml   
 └── wavechat-ui/
     ├── src/
     │   ├── app/
@@ -66,7 +103,6 @@ wavechat/
     │   │   ├── services/
     │   │   └── utils/
     │   ├── openapi/
-    │   ├── assets/
     │   └── environments/
     ├── package.json
     └── angular.json
@@ -106,21 +142,6 @@ wavechat/
    ```sh
    ng serve
    ```
-
-## Funcionalidades
-
-### Backend
-- **Gerenciamento de Usuários**: Criação, autenticação e recuperação de informações de usuários.
-- **Mensagens**: Envio e recebimento de mensagens de texto e mídia.
-- **Chats**: Criação e gerenciamento de chats entre usuários.
-- **Notificações**: Notificações em tempo real para mensagens recebidas e status de leitura.
-
-### Frontend
-- **Autenticação**: Os usuários podem se autenticar usando o Keycloak.
-- **Gerenciamento de Chats**: Os usuários podem visualizar e selecionar chats existentes.
-- **Envio de Mensagens**: Os usuários podem enviar mensagens de texto e mídia.
-- **Notificações em Tempo Real**: As mensagens recebidas são exibidas em tempo real.
-- **Emojis**: Os usuários podem adicionar emojis às suas mensagens.
 
 ## Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
